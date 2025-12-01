@@ -41,9 +41,12 @@ void *rt(void *arg)
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	ft_print_status(philo, "is thinking");
-	usleep(100000);
-	ft_print_status(philo, "end test");
+	while (1)
+	{
+		ft_philo_eat(philo);
+		ft_philo_sleep(philo);
+		ft_philo_think(philo);
+	}
 	return (NULL);
 }
 

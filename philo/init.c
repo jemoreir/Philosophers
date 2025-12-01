@@ -60,7 +60,7 @@ int ft_init_mutexes(t_data *data)
 		ft_destroy_forks(data, data->n_philos);
 		return (0);
 	}
-	if (pthread_mutex_init(&data->dead_mutex, NULL) != 0)
+	if (pthread_mutex_init(&data->stop_mutex, NULL) != 0)
 	{
 		pthread_mutex_destroy(&data->print_mutex);
 		ft_destroy_forks(data, data->n_philos);
@@ -69,7 +69,7 @@ int ft_init_mutexes(t_data *data)
 	if (pthread_mutex_init(&data->finished_mutex, NULL) != 0)
 	{
 		pthread_mutex_destroy(&data->print_mutex);
-		pthread_mutex_destroy(&data->dead_mutex);
+		pthread_mutex_destroy(&data->stop_mutex);
 		ft_destroy_forks(data, data->n_philos);
 		return (0);
 	}
@@ -81,7 +81,7 @@ int ft_init_inside_data(t_data *data)
 	int	i;
 
 	i = 0;
-	data->is_dead = 0;
+	data->stop = 0;
 	data->finished_philos = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
 	if (!data->forks)

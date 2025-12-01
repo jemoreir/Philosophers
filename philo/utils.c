@@ -93,7 +93,7 @@ void ft_destroy_all(t_data *data)
 	}
 	ft_destroy_forks(data, data->n_philos);
 	pthread_mutex_destroy(&data->print_mutex);
-	pthread_mutex_destroy(&data->dead_mutex);
+	pthread_mutex_destroy(&data->stop_mutex);
 	pthread_mutex_destroy(&data->finished_mutex);
 	free(data->philosophers);
 	return ;

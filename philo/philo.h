@@ -29,13 +29,13 @@ typedef struct s_data
 	int				n_philos;
 	int				must_eat;
 	int				finished_philos;
-	int				is_dead;
+	int				stop;
 	long long		start_time;
 	long long		time_to_die;
 	long long		time_to_eat;
 	long long		time_to_sleep;
 	pthread_mutex_t	finished_mutex;
-	pthread_mutex_t	dead_mutex;
+	pthread_mutex_t	stop_mutex;
 	pthread_mutex_t	print_mutex;
 	t_philo			*philosophers;
 	pthread_mutex_t	*forks;
@@ -69,5 +69,9 @@ int			ft_init_philos(t_data *data);
 int			ft_start_simulation(t_data *data);
 void 		*rt(void *arg);
 void		ft_print_status(t_philo *philo, char *msg);
+void		ft_philo_eat(t_philo *philo);
+void		ft_philo_sleep(t_philo *philo);
+void		ft_philo_think(t_philo *philo);
+int			ft_usleep(long long ms, t_data *data);
 
 #endif
