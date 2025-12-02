@@ -28,7 +28,6 @@ typedef struct s_data
 {
 	int				n_philos;
 	int				must_eat;
-	int				finished_philos;
 	int				stop;
 	long long		start_time;
 	long long		time_to_die;
@@ -46,6 +45,7 @@ typedef struct s_philo
 {
 	int				id;
 	int				meals;
+	int				finished;
 	long long		last_meal;
 	pthread_t		t;
 	pthread_mutex_t	state_mutex;
@@ -73,5 +73,10 @@ void		ft_philo_eat(t_philo *philo);
 void		ft_philo_sleep(t_philo *philo);
 void		ft_philo_think(t_philo *philo);
 int			ft_usleep(long long ms, t_data *data);
+int 		ft_runing(t_data *data);
+void 		ft_set_stop(t_data *data);
+int 		ft_check_death(t_data *data);
+void 		ft_check_all_ate(t_data *data);
+void 		*ft_monitor(void *arg);
 
 #endif

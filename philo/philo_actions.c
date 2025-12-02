@@ -44,6 +44,9 @@ void ft_philo_eat(t_philo *philo)
 	ft_usleep(philo->data->time_to_eat, philo->data);
 	pthread_mutex_lock(&philo->state_mutex);
 	philo->meals++;
+	if (philo->data->must_eat != -1 && philo->finished == 0 &&
+		philo->meals >= philo->data->must_eat)
+		philo->finished = 1;
 	pthread_mutex_unlock(&philo->state_mutex);
 	pthread_mutex_unlock(philo->fork_two);
 	pthread_mutex_unlock(philo->fork_one);

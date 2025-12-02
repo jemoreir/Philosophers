@@ -36,16 +36,30 @@ void	ft_fork_atr(t_data *data, int i)
 	}
 	return ;
 }
+
 void *rt(void *arg)
 {
 	t_philo *philo;
 
 	philo = (t_philo *)arg;
-	while (1)
+	if (philo->data->n_philos == 1)
+	{
+		pthread_mutex_lock(philo->fork_one);
+		ft_print_status(philo, "has taken a fork");
+		while (!ft_runing(philo->data))
+			usleep(10000);
+		pthread_mutex_unlock(philo->fork_one);
+		return (NULL);
+	}
+	if (philo->id % 2 == 0)
+		usleep(10000);
+	while (!ft_runing(philo->data))
 	{
 		ft_philo_eat(philo);
-		ft_philo_sleep(philo);
-		ft_philo_think(philo);
+		if (!ft_runing(philo->data))
+			ft_philo_sleep(philo);
+		if (!ft_runing(philo->data))
+			ft_philo_think(philo);
 	}
 	return (NULL);
 }

@@ -82,7 +82,6 @@ int ft_init_inside_data(t_data *data)
 
 	i = 0;
 	data->stop = 0;
-	data->finished_philos = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
 	if (!data->forks)
 		return (0);
@@ -113,7 +112,8 @@ int ft_init_philos(t_data *data)
 		data->philosophers[i].id = i + 1;
 		data->philosophers[i].data = data;
 		data->philosophers[i].meals = 0;
-		data->philosophers[i].last_meal = ft_get_time_ms();
+		data->philosophers[i].finished = 0;
+		data->philosophers[i].last_meal = data->start_time;
 		if (pthread_mutex_init(&data->philosophers[i].state_mutex, NULL) != 0)
 		{
 			while (--i >= 0)
