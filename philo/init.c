@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int ft_init_data(t_data *data, int argc, char **argv)
+int	ft_init_data(t_data *data, int argc, char **argv)
 {
 	int	p;
 
@@ -40,7 +40,8 @@ int ft_init_data(t_data *data, int argc, char **argv)
 		data->must_eat = -1;
 	return (1);
 }
-void ft_destroy_forks(t_data *data, int s)
+
+void	ft_destroy_forks(t_data *data, int s)
 {
 	int	i;
 
@@ -53,7 +54,8 @@ void ft_destroy_forks(t_data *data, int s)
 	free(data->forks);
 	return ;
 }
-int ft_init_mutexes(t_data *data)
+
+int	ft_init_mutexes(t_data *data)
 {
 	if (pthread_mutex_init(&data->print_mutex, NULL) != 0)
 	{
@@ -76,7 +78,7 @@ int ft_init_mutexes(t_data *data)
 	return (1);
 }
 
-int ft_init_inside_data(t_data *data)
+int	ft_init_inside_data(t_data *data)
 {
 	int	i;
 
@@ -100,7 +102,7 @@ int ft_init_inside_data(t_data *data)
 	return (1);
 }
 
-int ft_init_philos(t_data *data)
+int	ft_init_philos(t_data *data)
 {
 	int	i;
 

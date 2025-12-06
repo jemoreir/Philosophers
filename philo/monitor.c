@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int ft_runing(t_data *data)
+int	ft_runing(t_data *data)
 {
 	int	r;
 
@@ -22,14 +22,14 @@ int ft_runing(t_data *data)
 	return (r);
 }
 
-void ft_set_stop(t_data *data)
+void	ft_set_stop(t_data *data)
 {
 	pthread_mutex_lock(&data->stop_mutex);
 	data->stop = 1;
 	pthread_mutex_unlock(&data->stop_mutex);
 }
 
-int ft_check_death(t_data *data)
+int	ft_check_death(t_data *data)
 {
 	long long	now;
 	int			i;
@@ -42,8 +42,8 @@ int ft_check_death(t_data *data)
 		if (now - data->philosophers[i].last_meal > data->time_to_die)
 		{
 			pthread_mutex_lock(&data->print_mutex);
-			printf("%lld %d %s\n", (ft_get_time_ms() - data->start_time), 
-					data->philosophers[i].id, "died");
+			printf("%lld %d %s\n", (ft_get_time_ms() - data->start_time),
+				data->philosophers[i].id, "died");
 			ft_set_stop(data);
 			pthread_mutex_unlock(&data->print_mutex);
 			pthread_mutex_unlock(&data->philosophers[i].state_mutex);
@@ -55,7 +55,7 @@ int ft_check_death(t_data *data)
 	return (0);
 }
 
-int ft_check_all_ate(t_data *data)
+int	ft_check_all_ate(t_data *data)
 {
 	int	i;
 	int	done;
@@ -73,7 +73,7 @@ int ft_check_all_ate(t_data *data)
 	if (done == data->n_philos)
 	{
 		pthread_mutex_lock(&data->print_mutex);
-		//printf("End Simulation.\n");
+		printf("End Simulation.\n");
 		ft_set_stop(data);
 		pthread_mutex_unlock(&data->print_mutex);
 		return (1);
@@ -81,7 +81,7 @@ int ft_check_all_ate(t_data *data)
 	return (0);
 }
 
-void *ft_monitor(void *arg)
+void	*ft_monitor(void *arg)
 {
 	t_data	*data;
 

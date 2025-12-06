@@ -12,7 +12,7 @@
 
 #include "philo.h"
 
-int ft_strlen(char *c)
+int	ft_strlen(char *c)
 {
 	int	i;
 
@@ -81,7 +81,7 @@ int	ft_safe_atoi(char *str, int *nbr)
 	return (1);
 }
 
-void ft_destroy_all(t_data *data)
+void	ft_destroy_all(t_data *data)
 {
 	int	i;
 

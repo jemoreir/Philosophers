@@ -67,16 +67,16 @@ long long	ft_get_time_ms(void);
 void		ft_fork_atr(t_data *data, int i);
 int			ft_init_philos(t_data *data);
 int			ft_start_simulation(t_data *data);
-void 		*rt(void *arg);
+void		*rt(void *arg);
 void		ft_print_status(t_philo *philo, char *msg);
 void		ft_philo_eat(t_philo *philo);
 void		ft_philo_sleep(t_philo *philo);
 void		ft_philo_think(t_philo *philo);
 int			ft_usleep(long long ms, t_data *data);
-int 		ft_runing(t_data *data);
-void 		ft_set_stop(t_data *data);
-int 		ft_check_death(t_data *data);
-int 		ft_check_all_ate(t_data *data);
-void 		*ft_monitor(void *arg);
+int			ft_runing(t_data *data);
+void		ft_set_stop(t_data *data);
+int			ft_check_death(t_data *data);
+int			ft_check_all_ate(t_data *data);
+void		*ft_monitor(void *arg);
 
 #endif

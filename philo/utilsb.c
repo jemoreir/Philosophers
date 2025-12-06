@@ -15,6 +15,7 @@
 long long	ft_get_time_ms(void)
 {
 	struct timeval	tv;
+
 	gettimeofday(&tv, NULL);
 	return (tv.tv_sec * 1000LL + tv.tv_usec / 1000);
 }
@@ -37,9 +38,9 @@ void	ft_fork_atr(t_data *data, int i)
 	return ;
 }
 
-void *rt(void *arg)
+void	*rt(void *arg)
 {
-	t_philo *philo;
+	t_philo	*philo;
 
 	philo = (t_philo *)arg;
 	if (philo->data->n_philos == 1)
@@ -64,7 +65,7 @@ void *rt(void *arg)
 	return (NULL);
 }
 
-int ft_start_simulation(t_data *data)
+int	ft_start_simulation(t_data *data)
 {
 	pthread_t	monitor;
 	int			i;
@@ -73,7 +74,7 @@ int ft_start_simulation(t_data *data)
 	while (i < data->n_philos)
 	{
 		if (pthread_create(&data->philosophers[i].t, NULL, rt,
-			&data->philosophers[i]) != 0)
+				&data->philosophers[i]) != 0)
 			return (0);
 		i++;
 	}
@@ -86,7 +87,7 @@ int ft_start_simulation(t_data *data)
 	return (1);
 }
 
-void ft_print_status(t_philo *philo, char *msg)
+void	ft_print_status(t_philo *philo, char *msg)
 {
 	t_data		*data;
 	long long	timestamp;

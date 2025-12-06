@@ -12,9 +12,9 @@
 
 #include "philo.h"
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-	t_data data;
+	t_data	data;
 
 	if (!ft_init_data(&data, argc, argv))
 		return (printf("Erro init data\n"));
