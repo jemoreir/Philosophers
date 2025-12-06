@@ -63,3 +63,13 @@ void	ft_philo_think(t_philo *philo)
 	ft_print_status(philo, "is thinking");
 	ft_usleep(100, philo->data);
 }
+
+void	ft_join_philos(t_data *data, int philos)
+{
+	int	i;
+
+	i = 0;
+	while (i < philos)
+		pthread_join(data->philosophers[i++].t, NULL);
+	return ;
+}

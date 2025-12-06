@@ -75,14 +75,20 @@ int	ft_start_simulation(t_data *data)
 	{
 		if (pthread_create(&data->philosophers[i].t, NULL, rt,
 				&data->philosophers[i]) != 0)
+		{
+			ft_set_stop(data);
+			ft_join_philos(data, i);
 			return (0);
+		}
 		i++;
 	}
 	if (pthread_create(&monitor, NULL, ft_monitor, data) != 0)
+	{
+		ft_set_stop(data);
+		ft_join_philos(data, data->n_philos);
 		return (0);
-	i = 0;
-	while (i < data->n_philos)
-		pthread_join(data->philosophers[i++].t, NULL);
+	}
+	ft_join_philos(data, data->n_philos);
 	pthread_join(monitor, NULL);
 	return (1);
 }
