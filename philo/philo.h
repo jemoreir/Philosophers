@@ -76,7 +76,7 @@ int			ft_usleep(long long ms, t_data *data);
 int 		ft_runing(t_data *data);
 void 		ft_set_stop(t_data *data);
 int 		ft_check_death(t_data *data);
-void 		ft_check_all_ate(t_data *data);
+int 		ft_check_all_ate(t_data *data);
 void 		*ft_monitor(void *arg);
 
 #endif

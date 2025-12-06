@@ -66,10 +66,10 @@ void *rt(void *arg)
 
 int ft_start_simulation(t_data *data)
 {
-	int	i;
+	pthread_t	monitor;
+	int			i;
 
 	i = 0;
-	data->start_time = ft_get_time_ms();
 	while (i < data->n_philos)
 	{
 		if (pthread_create(&data->philosophers[i].t, NULL, rt,
@@ -77,9 +77,12 @@ int ft_start_simulation(t_data *data)
 			return (0);
 		i++;
 	}
+	if (pthread_create(&monitor, NULL, ft_monitor, data) != 0)
+		return (0);
 	i = 0;
 	while (i < data->n_philos)
 		pthread_join(data->philosophers[i++].t, NULL);
+	pthread_join(monitor, NULL);
 	return (1);
 }
 
@@ -91,7 +94,8 @@ void ft_print_status(t_philo *philo, char *msg)
 	data = philo->data;
 	pthread_mutex_lock(&data->print_mutex);
 	timestamp = ft_get_time_ms() - data->start_time;
-	printf("%lld %d %s\n", timestamp, philo->id, msg);
+	if (data->stop == 0)
+		printf("%lld %d %s\n", timestamp, philo->id, msg);
 	pthread_mutex_unlock(&data->print_mutex);
 	return ;
 }

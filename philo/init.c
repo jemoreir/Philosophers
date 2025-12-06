@@ -82,6 +82,7 @@ int ft_init_inside_data(t_data *data)
 
 	i = 0;
 	data->stop = 0;
+	data->start_time = ft_get_time_ms();
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->n_philos);
 	if (!data->forks)
 		return (0);

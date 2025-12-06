@@ -20,8 +20,6 @@ int main(int argc, char **argv)
 		return (printf("Erro init data\n"));
 	if (!ft_init_inside_data(&data))
 		return (printf("Erro init inside data\n"));
-	if (!ft_init_mutexes(&data))
-		return (printf("Erro init mutexes\n"));
 	if (!ft_init_philos(&data))
 		return (printf("Erro init philos\n"));
 	if (!ft_start_simulation(&data))

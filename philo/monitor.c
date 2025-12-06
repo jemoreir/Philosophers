@@ -41,9 +41,12 @@ int ft_check_death(t_data *data)
 		now = ft_get_time_ms();
 		if (now - data->philosophers[i].last_meal > data->time_to_die)
 		{
-			ft_print_status(&data->philosophers[i], "died");
-			pthread_mutex_unlock(&data->philosophers[i].state_mutex);
+			pthread_mutex_lock(&data->print_mutex);
+			printf("%lld %d %s\n", (ft_get_time_ms() - data->start_time), 
+					data->philosophers[i].id, "died");
 			ft_set_stop(data);
+			pthread_mutex_unlock(&data->print_mutex);
+			pthread_mutex_unlock(&data->philosophers[i].state_mutex);
 			return (1);
 		}
 		pthread_mutex_unlock(&data->philosophers[i].state_mutex);
@@ -52,7 +55,7 @@ int ft_check_death(t_data *data)
 	return (0);
 }
 
-void ft_check_all_ate(t_data *data)
+int ft_check_all_ate(t_data *data)
 {
 	int	i;
 	int	done;
@@ -68,8 +71,14 @@ void ft_check_all_ate(t_data *data)
 		i++;
 	}
 	if (done == data->n_philos)
+	{
+		pthread_mutex_lock(&data->print_mutex);
+		//printf("End Simulation.\n");
 		ft_set_stop(data);
-	return ;
+		pthread_mutex_unlock(&data->print_mutex);
+		return (1);
+	}
+	return (0);
 }
 
 void *ft_monitor(void *arg)
@@ -81,8 +90,8 @@ void *ft_monitor(void *arg)
 	{
 		if (ft_check_death(data))
 			return (NULL);
-		if (data->must_eat != -1)
-			ft_check_all_ate(data);
+		if (data->must_eat != -1 && ft_check_all_ate(data))
+			return (NULL);
 		usleep(100);
 	}
 	return (NULL);
