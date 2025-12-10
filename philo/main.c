@@ -17,13 +17,13 @@ int	main(int argc, char **argv)
 	t_data	data;
 
 	if (!ft_init_data(&data, argc, argv))
-		return (printf("Erro init data\n"));
+		return (printf("Error init data\n"));
 	if (!ft_init_inside_data(&data))
-		return (printf("Erro init inside data\n"));
+		return (printf("Error init inside data\n"));
 	if (!ft_init_philos(&data))
-		return (printf("Erro init philos\n"));
+		return (printf("Error init philos\n"));
 	if (!ft_start_simulation(&data))
-		return (printf("Erro start simulation\n"));
+		return (printf("Error start simulation\n"));
 	ft_destroy_all(&data);
 	return (0);
 }
