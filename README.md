@@ -113,4 +113,6 @@ All core implementation, synchronization logic, and debugging were developed ind
 ## Author
 
 Jean Henrique Moreira  
-42 Lisboa student
+42 Lisboa  
+
+Learning low-level. Thinking long-term.
