@@ -19,11 +19,9 @@
 # include <stdlib.h>
 # include <sys/time.h>
 
-/*Declaraçoes antecipadas*/
 typedef struct s_data	t_data;
 typedef struct s_philo	t_philo;
 
-/*Dados globais da simulaçao*/
 typedef struct s_data
 {
 	int				n_philos;
@@ -40,7 +38,6 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 }	t_data;
 
-/*Filosofo*/
 typedef struct s_philo
 {
 	int				id;

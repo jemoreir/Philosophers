@@ -10,12 +10,15 @@
 #                                                                              #
 # **************************************************************************** #
 
+.SILENT:
+
 NAME = philo
-CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -Iinclude
 LDFLAGS = -pthread
 
-SRC = main.c init.c monitor.c philo_actions.c utils.c utilsb.c
+SRC = src/main.c src/init.c src/monitor.c src/philo_actions.c src/utils.c \
+		src/utils_extra.c
 OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
